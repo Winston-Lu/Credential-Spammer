@@ -8,7 +8,7 @@ from selenium.webdriver.support.ui import Select
 ##############################################################################################################
 ###---------------------------------------------- CONFIG --------------------------------------------------###
 ##############################################################################################################
-WEBSITE = "file:///C:/Users/winst/Downloads/uwoepay%20-%20reciept.html" 
+WEBSITE = " " #add url or file path 
 EMAILID = "email" #id of the html field where the user inputs email
 PASSWORDID = "password" #id of the password field where the user inputs password
 SENDID = "submit" #id of the submit button id in html
