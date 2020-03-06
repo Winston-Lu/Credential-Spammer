@@ -8,10 +8,10 @@ from selenium.webdriver.support.ui import Select
 ##############################################################################################################
 ###---------------------------------------------- CONFIG --------------------------------------------------###
 ##############################################################################################################
-WEBSITE = "file:///C:/Users/winst/Downloads/uwoepay%20-%20reciept.html" 
-EMAILID = "email" #id of the html field where the user inputs email
-PASSWORDID = "password" #id of the password field where the user inputs password
-SENDID = "submit" #id of the submit button id in html
+WEBSITE = "https://confirmsubscription.com/h/t/1A197E36560DF5FE" #"file:///C:/Users/winst/Downloads/uwoepay%20-%20reciept.html" 
+EMAILID = "fieldEmail" #id of the html field where the user inputs email
+PASSWORDID = "fieldjltruhi" #id of the password field where the user inputs password
+SENDID = "js-cm-submit-button" #id of the submit button id in html
 ##############################################################################################################
 ##############################################################################################################
 ##############################################################################################################
@@ -31,6 +31,7 @@ def main():
     passwords = generatePasswordList(accounts)
     driver = webdriver.Chrome("C:\Program Files (x86)\Google\Chrome\Application\Driver\chromedriver") #Downloaded chromedriver and put it into my chrome installation folder
     driver.get(WEBSITE)
+    sleep(30)
     """ 
     #disable chrome's warning for deceptive content
     safety = driver.find_element_by_id("details-button")
@@ -45,21 +46,30 @@ def main():
             emailField.send_keys(usr)
             passwordField = driver.find_element_by_id(PASSWORDID)
             passwordField.send_keys(pswrd)
-            sendButton = driver.find_element_by_id(SENDID)
-            sendButton.click()
+            ## Click via send button id
+            #sendButton = driver.find_element_by_id(SENDID)
+            #sendButton.click()
+            ## Click via send button class
+            sendButton = driver.find_elements_by_css_selector(('.'+ SENDID))
+            sendButton[0].click(); # Form submission
+            #############################################
             sleepTime = random.uniform(1.0,8.0)
             print("Submitted fake creds:",usr+":"+pswrd," - Waiting",sleepTime,"seconds until next submit")
-            ##For 404 error landing page
-            driver.back()
-            ##For alert redirect
+            ## For 404 error landing page
+            #driver.back()
+            ## For submit page
+            back = "sc-cSHVUG"
+            backButton = driver.find_elements_by_css_selector(('.'+ back))
+            backButton[0].click(); # Form submission
+            #For alert redirect
             #todo
             emailField = driver.find_element_by_id(EMAILID)
             emailField.clear()
             passwordField = driver.find_element_by_id(PASSWORDID)
             passwordField.clear()
             sleep(sleepTime)
-    except:
-        print("Error, restarting")
+    except Exception as e:
+        print("Error, restarting: " + e)
         driver.close()
         sleep(5)
         main()
