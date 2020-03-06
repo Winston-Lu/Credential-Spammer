@@ -8,10 +8,16 @@ from selenium.webdriver.support.ui import Select
 ##############################################################################################################
 ###---------------------------------------------- CONFIG --------------------------------------------------###
 ##############################################################################################################
+<<<<<<< HEAD
 WEBSITE = "https://confirmsubscription.com/h/t/1A197E36560DF5FE" #"file:///C:/Users/winst/Downloads/uwoepay%20-%20reciept.html" 
 EMAILID = "fieldEmail" #id of the html field where the user inputs email
 PASSWORDID = "fieldjltruhi" #id of the password field where the user inputs password
 SENDID = "js-cm-submit-button" #id of the submit button id in html
+=======
+WEBSITE = " " #add url or file path 
+EMAILID = "email" #id of the html field where the user inputs email
+PASSWORDID = "password" #id of the password field where the user inputs password
+SENDID = "submit" #id of the submit button id in html
 ##############################################################################################################
 ##############################################################################################################
 ##############################################################################################################
